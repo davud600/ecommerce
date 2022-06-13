@@ -10,8 +10,9 @@ const data = {
       brand: 'Nike',
       rating: 4.5,
       numReviews: 10,
-      description: 'High quality shirt'
-    }, {
+      description: 'High quality shirt',
+    },
+    {
       name: 'Adidas Fit Shirt',
       slug: 'adidas-fit-shirt',
       category: 'Shirts',
@@ -21,8 +22,9 @@ const data = {
       brand: 'Adidas',
       rating: 4.0,
       numReviews: 10,
-      description: 'High quality product'
-    }, {
+      description: 'High quality product',
+    },
+    {
       name: 'Nike Slim Pant',
       slug: 'nike-slim-pant',
       category: 'Pants',
@@ -32,8 +34,9 @@ const data = {
       brand: 'Nike',
       rating: 4.5,
       numReviews: 14,
-      description: 'High quality product'
-    }, {
+      description: 'High quality product',
+    },
+    {
       name: 'Adidas Slim Pant',
       slug: 'adidas-slim-pant',
       category: 'Pants',
@@ -43,8 +46,8 @@ const data = {
       brand: 'Puma',
       rating: 4.5,
       numReviews: 10,
-      description: 'High quality product'
-    }
-  ]
+      description: 'High quality product',
+    },
+  ],
 }
 export default data
