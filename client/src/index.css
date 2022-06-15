@@ -15,10 +15,20 @@ code {
 main {
   flex: 1;
 }
+
+.btn-primary {
+  background-color: #ffc000;
+  color: black;
+}
+
 .products {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.rating span {
+  color: #ffc000;
 }
 
 .product {
@@ -35,4 +45,14 @@ main {
 
 .site-containter {
   min-height: 100vh;
+}
+
+.img-large {
+  max-width: 100%;
+}
+.img-thumbnail {
+  height: 80px;
+}
+.small-container {
+  max-width: 600px;
 }
