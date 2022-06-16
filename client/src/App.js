@@ -1,20 +1,33 @@
 import {useContext} from 'react'
 import {BrowserRouter, Routes, Route, Link} from 'react-router-dom'
-import {Navbar, Container, Nav, Badge} from 'react-bootstrap'
+import {Navbar, Container, Nav, Badge, NavDropdown} from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
+import {ToastContainer} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import {Store} from './Store'
 import HomeScreen from './screens/HomeScreen'
 import ProductScreen from './screens/ProductScreen'
 import CartScreen from './screens/CartScreen'
 import SigninScreen from './screens/SigninScreen'
+import SignupScreen from './screens/SignupScreen'
+import ShippingAddressScreen from './screens/ShippingAddressScreen'
 
 export default function App() {
-  const {state} = useContext(Store)
-  const {cart} = state
+  const {state, dispatch: ctxDispatch} = useContext(Store)
+  const {cart, userInfo} = state
+
+  const signoutHandler = () => {
+    ctxDispatch({
+      type: 'USER_SIGNOUT',
+    })
+    localStorage.removeItem('userInfo')
+    localStorage.removeItem('shippingAddress')
+  }
 
   return (
     <BrowserRouter>
       <div className="d-flex flex-column site-containter">
+        <ToastContainer position="bottom-center" limit={1} />
         <header>
           <Navbar bg="dark" variant="dark">
             <Container>
@@ -30,6 +43,27 @@ export default function App() {
                     </Badge>
                   )}
                 </Link>
+                {userInfo ? (
+                  <NavDropdown title={userInfo.name} id="basic-nav-dropdown">
+                    <LinkContainer to="/profile">
+                      <NavDropdown.Item>User Profile</NavDropdown.Item>
+                    </LinkContainer>
+                    <LinkContainer to="/orderhistory">
+                      <NavDropdown.Item>Order History</NavDropdown.Item>
+                    </LinkContainer>
+                    <NavDropdown.Divider />
+                    <Link
+                      className="dropdown-item"
+                      to="#signout"
+                      onClick={signoutHandler}>
+                      Sign Out
+                    </Link>
+                  </NavDropdown>
+                ) : (
+                  <Link className="nav-link" to="/signin">
+                    Sign in
+                  </Link>
+                )}
               </Nav>
             </Container>
           </Navbar>
@@ -37,8 +71,10 @@ export default function App() {
         <main>
           <Container className="mt-3">
             <Routes>
+              <Route path="/shipping" element={<ShippingAddressScreen />} />
               <Route path="/product/:slug" element={<ProductScreen />} />
               <Route path="/cart" element={<CartScreen />} />
+              <Route path="/signup" element={<SignupScreen />} />
               <Route path="/signin" element={<SigninScreen />} />
               <Route path="/" element={<HomeScreen />} />
             </Routes>
