@@ -11,6 +11,8 @@ import CartScreen from './screens/CartScreen'
 import SigninScreen from './screens/SigninScreen'
 import SignupScreen from './screens/SignupScreen'
 import ShippingAddressScreen from './screens/ShippingAddressScreen'
+import PaymentMethodScreen from './screens/PaymentMethodScreen'
+import PlaceOrderScreen from './screens/PlaceOrderScreen'
 
 export default function App() {
   const {state, dispatch: ctxDispatch} = useContext(Store)
@@ -71,6 +73,8 @@ export default function App() {
         <main>
           <Container className="mt-3">
             <Routes>
+              <Route path="/placeorder" element={<PlaceOrderScreen />} />
+              <Route path="/payment" element={<PaymentMethodScreen />} />
               <Route path="/shipping" element={<ShippingAddressScreen />} />
               <Route path="/product/:slug" element={<ProductScreen />} />
               <Route path="/cart" element={<CartScreen />} />
